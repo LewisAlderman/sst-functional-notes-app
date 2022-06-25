@@ -1,0 +1,5 @@
+{
+  "name": "notes-functional",
+  "region": "us-west-1",
+  "main": "stacks/index.ts"
+}
