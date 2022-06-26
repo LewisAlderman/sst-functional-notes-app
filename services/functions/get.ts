@@ -5,7 +5,7 @@ export const main = handler(async (event) => {
 	const params: AWS.DynamoDB.DocumentClient.GetItemInput = {
 		TableName: process.env.TABLE_NAME as string,
 		Key: {
-			userId: event.requestContext.authorizer.iam.cognitoIdentity.identityId,
+			userId: event.requestContext.authorizer?.iam.cognitoIdentity.identityId,
 			noteId: event.pathParameters!.noteId
 		}
 	};

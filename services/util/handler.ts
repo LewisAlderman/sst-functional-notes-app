@@ -1,11 +1,13 @@
-import {APIGatewayProxyHandlerV2} from "aws-lambda";
+import {Handler, Context, APIGatewayProxyCallback, APIGatewayProxyEvent, Callback} from "aws-lambda";
 
-export default function handler (lambda: (...args: Parameters<APIGatewayProxyHandlerV2>) => any) {
-	return async (...args: Parameters<APIGatewayProxyHandlerV2>) => {
+
+
+export default function handler (lambda: Handler<APIGatewayProxyEvent>) {
+	return async (event: APIGatewayProxyEvent, context: Context, callback: Callback<APIGatewayProxyCallback>) => {
 		let body, statusCode;
 
 		try {
-			body = await lambda(...args);
+			body = await lambda(event, context, callback);
 			statusCode = 200;
 		} catch (e: any) {
 			console.error(e)
@@ -13,6 +15,14 @@ export default function handler (lambda: (...args: Parameters<APIGatewayProxyHan
 			statusCode = 500;
 		}
 
-		return {statusCode, body: JSON.stringify(body)}
+		return {
+			statusCode,
+			body: JSON.stringify(body),
+			headers: {
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-CREDENTIALS': true
+			}
+		}
 	}
 }
