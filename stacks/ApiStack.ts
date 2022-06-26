@@ -11,6 +11,7 @@ export function ApiStack({stack, app}: StackContext) {
 				permissions: [table],
 				environment: {
 					TABLE_NAME: table.tableName,
+					STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY as string,
 				}
 			}
 		},
@@ -21,6 +22,7 @@ export function ApiStack({stack, app}: StackContext) {
 			"GET /notes": "functions/list.main",
 			"PUT /notes/{noteId}": "functions/update.main",
 			"DELETE /notes/{noteId}": "functions/delete.main",
+			"POST /billing": "functions/billing.main",
 		}
 	});
 
