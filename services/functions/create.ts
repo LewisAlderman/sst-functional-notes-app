@@ -1,6 +1,5 @@
 import * as uuid from 'uuid';
 import AWS from 'aws-sdk';
-import {APIGatewayProxyHandlerV2} from 'aws-lambda';
 import dynamoDb from 'util/dynamodb';
 import handler from 'util/handler';
 
