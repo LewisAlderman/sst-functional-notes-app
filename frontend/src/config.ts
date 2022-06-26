@@ -1,19 +1,20 @@
 const config = {
   // Backend config
   s3: {
-    REGION: process.env.REACT_APP_REGION,
-    BUCKET: process.env.REACT_APP_BUCKET,
+    REGION: import.meta.env.VITE_REGION,
+    BUCKET_NAME: import.meta.env.VITE_BUCKET_NAME,
   },
   apiGateway: {
-    REGION: process.env.REACT_APP_REGION,
-    URL: process.env.REACT_APP_API_URL,
+    REGION: import.meta.env.VITE_REGION,
+    URL: import.meta.env.VITE_API_URL,
   },
   cognito: {
-    REGION: process.env.REACT_APP_REGION,
-    USER_POOL_ID: process.env.REACT_APP_USER_POOL_ID,
-    APP_CLIENT_ID: process.env.REACT_APP_USER_POOL_CLIENT_ID,
-    IDENTITY_POOL_ID: process.env.REACT_APP_IDENTITY_POOL_ID,
+    REGION: import.meta.env.VITE_REGION,
+    USER_POOL_ID: import.meta.env.VITE_USER_POOL_ID,
+    APP_CLIENT_ID: import.meta.env.VITE_USER_POOL_CLIENT_ID,
+    IDENTITY_POOL_ID: import.meta.env.VITE_IDENTITY_POOL_ID,
   },
+  MAX_ATTACHMENT_SIZE: 5000000,
 };
 
 export default config;
