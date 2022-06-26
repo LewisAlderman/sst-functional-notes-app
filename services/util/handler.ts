@@ -2,9 +2,13 @@ import {Handler, Context, APIGatewayProxyCallback, APIGatewayProxyEvent, Callbac
 
 type UnknownObj = {[key: string]: unknown};
 type IAMCognitoAuthorizer = {iam: {cognitoIdentity: {identityId: string}}};
-type E<TAuthorizer extends UnknownObj> = APIGatewayProxyEventV2WithRequestContext<APIGatewayEventRequestContextV2WithAuthorizer<TAuthorizer>>
+type HandlerEvent<TAuthorizer extends UnknownObj> = APIGatewayProxyEventV2WithRequestContext<APIGatewayEventRequestContextV2WithAuthorizer<TAuthorizer>>
 
-export default function handler<TAuthorizerObj extends UnknownObj = IAMCognitoAuthorizer>(lambda: Handler<E<TAuthorizerObj>>) {
+export default function handler<
+	TAuthorizerObj extends UnknownObj = IAMCognitoAuthorizer
+	>(
+		lambda: Handler<HandlerEvent<TAuthorizerObj>>
+		) {
 	return async (event: Parameters<typeof lambda>[0], context: Context, callback: Callback<APIGatewayProxyCallback>) => {
 		let body, statusCode;
 
