@@ -10,7 +10,7 @@ export const main = handler(async (event) => {
 	const params: AWS.DynamoDB.DocumentClient.PutItemInput = {
 		TableName: process.env.TABLE_NAME as string,
 		Item: {
-			userId: "123",
+			userId: event.requestContext.authorizer.iam.cognitoIdentity.identityId,
 			noteId: uuid.v1(),
 			content: data.content,
 			attachment: data.attachment,

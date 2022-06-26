@@ -6,6 +6,7 @@ export function ApiStack({stack, app}: StackContext) {
 
 	const api = new Api(stack, "Api", {
 		defaults: {
+			authorizer: "iam",
 			function: {
 				permissions: [table],
 				environment: {
@@ -14,6 +15,7 @@ export function ApiStack({stack, app}: StackContext) {
 			}
 		},
 		routes: {
+			"GET /check": "functions/check.main",
 			"POST /notes": "functions/create.main",
 			"GET /notes/{noteId}": "functions/get.main",
 			"GET /notes": "functions/list.main",

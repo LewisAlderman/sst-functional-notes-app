@@ -1,5 +1,6 @@
 import { StorageStack } from "./StorageStack";
 import { ApiStack } from "./ApiStack";
+import { AuthStack } from "./AuthStack";
 import { App } from "@serverless-stack/resources";
 
 export default function (app: App) {
@@ -14,4 +15,5 @@ export default function (app: App) {
   app
     .stack(StorageStack)
     .stack(ApiStack)
+    .stack(AuthStack)
 }

@@ -9,7 +9,7 @@ export const main = handler(async (event) => {
 	await dynamoDb.update({
 		TableName: process.env.TABLE_NAME as string,
 		Key: {
-			userId: "123",
+			userId: event.requestContext.authorizer.iam.cognitoIdentity.identityId,
 			noteId: event.pathParameters!.noteId
 		},
 		UpdateExpression: 'SET content = :content, attachment = :attachment',
