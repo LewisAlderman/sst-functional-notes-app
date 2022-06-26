@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "sst start",
+    "dev": "cd ./frontend && yarn dev",
     "build": "sst build",
     "deploy": "sst deploy --stage=production",
     "remove": "sst remove",
